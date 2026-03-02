@@ -1,0 +1,99 @@
+import Link from "next/link";
+import Image from "next/image";
+import { TICKET_ID } from "@/lib/links";
+import { isValidLocale, type Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
+import { notFound } from "next/navigation";
+
+const NAV_KEYS = ["mandate", "operations", "compliance", "philanthropy"] as const;
+
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function HomePage({ params }: PageProps) {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
+  const dict = await getDictionary(locale as Locale);
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-navy text-institutional-white">
+        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <Image
+            src="/images/logo-espa.png"
+            alt="ESPA Israel"
+            width={200}
+            height={66}
+            className="h-14 w-auto mb-8"
+            priority
+          />
+          <h1 className="text-institutional-white text-4xl md:text-5xl font-bold tracking-tight max-w-3xl leading-tight">
+            {dict.home.heroTitle}
+          </h1>
+          <p className="mt-4 text-lg md:text-xl text-institutional-white/70 max-w-2xl leading-relaxed">
+            {dict.home.heroSubtitle}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href={`/${locale}/mandate`}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-institutional-white text-navy text-sm font-semibold rounded-sm no-underline hover:bg-institutional-off-white transition-colors"
+            >
+              {dict.home.viewMandate}
+            </Link>
+            <Link
+              href={`/${locale}/compliance`}
+              className="inline-flex items-center gap-2 px-6 py-3 border border-institutional-white/30 text-institutional-white text-sm font-semibold rounded-sm no-underline hover:bg-institutional-white/10 transition-colors"
+            >
+              {dict.home.complianceFramework}
+            </Link>
+          </div>
+          <p className="mt-10 text-xs font-mono text-institutional-white/40">
+            {dict.header.ticketId}: {TICKET_ID}
+          </p>
+        </div>
+      </section>
+
+      {/* Quick nav grid */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <h2 className="text-2xl font-bold mb-2">{dict.home.overviewTitle}</h2>
+        <p className="text-slate mb-10 max-w-xl">{dict.home.overviewSubtitle}</p>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          {NAV_KEYS.map((key, i) => (
+            <Link
+              key={key}
+              href={`/${locale}/${key}`}
+              className="group flex gap-5 border border-institutional-border rounded-sm p-6 no-underline hover:border-navy/30 hover:bg-institutional-off-white transition-all"
+            >
+              <span className="flex-none flex items-center justify-center w-10 h-10 rounded-sm bg-navy text-institutional-white text-sm font-bold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <span className="block text-base font-bold text-navy group-hover:text-navy-light transition-colors">
+                  {dict.nav[key]}
+                </span>
+                <span className="block text-sm text-slate-muted mt-1">
+                  {dict.home.navDescriptions[key]}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <section className="border-t border-institutional-border bg-institutional-off-white">
+        <div className="mx-auto max-w-6xl px-6 py-12 text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-muted mb-3">
+            {dict.home.regulatoryFramework}
+          </p>
+          <p className="text-sm text-slate max-w-2xl mx-auto leading-relaxed">
+            {dict.home.regulatoryBody}
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}

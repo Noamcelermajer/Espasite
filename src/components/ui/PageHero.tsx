@@ -23,13 +23,13 @@ export default function PageHero({ title, subtitle, imageSrc, imageAlt }: PageHe
         </div>
 
         {imageSrc && (
-          <div className="relative h-48 md:h-56 lg:h-64 rounded-sm overflow-hidden border border-institutional-border/40 bg-institutional-off-white/5">
+          <div className="relative w-full aspect-[16/10] min-h-[12rem] md:min-h-[14rem] rounded-sm overflow-hidden border border-institutional-border/40 bg-navy-light/30">
             <Image
               src={imageSrc}
               alt={imageAlt ?? ""}
               fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 320px, 100vw"
+              className="object-cover object-center"
+              sizes="(min-width: 768px) 42vw, (min-width: 1024px) 320px, 100vw"
               priority
             />
           </div>

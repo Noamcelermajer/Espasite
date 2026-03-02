@@ -13,7 +13,8 @@
   --color-institutional-divider: #cbd5e1;
   --color-accent-gold: #b8860b;
 
-  --font-sans: "Inter", "Source Sans 3", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Per-locale fonts applied on body in [locale]/layout (Inter / Assistant / Noto Sans Arabic). Fallback: */
+  --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   --spacing-section: 5rem;
   --spacing-container: 4rem;

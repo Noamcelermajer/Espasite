@@ -25,7 +25,7 @@ export default async function MandatePage({ params }: PageProps) {
       <PageHero
         title={page.title}
         subtitle={page.subtitle}
-        imageSrc="/images/hero-mandate.jpg"
+        imageSrc="/images/hero-mandate.jpg.avif"
         imageAlt="Institutional government building under clear skies symbolizing ESPA Israel's strategic mandate"
       />
       <div className="mx-auto max-w-6xl px-6">

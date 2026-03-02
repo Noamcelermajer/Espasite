@@ -1,0 +1,70 @@
+# Build and deploy ESPA Israel to Cloud Run on push.
+# Connect repo in Cloud Console > Cloud Build > Triggers; run this config on push.
+#
+# Required: Artifact Registry repo in same project, e.g.:
+#   gcloud artifacts repositories create docker --repository-format=docker --location=europe-west1
+#
+# Substitution (set in trigger or defaults):
+#   _REGION      = europe-west1
+#   _SERVICE     = espa-israel
+#   _ARTIFACT_REPO = docker (or your repo name)
+
+substitutions:
+  _REGION: "europe-west1"
+  _SERVICE: "espa-israel"
+  _ARTIFACT_REPO: "docker"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  # Build container image
+  - id: "build"
+    name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_SERVICE}:${SHORT_SHA}"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_SERVICE}:latest"
+      - "."
+
+  # Push to Artifact Registry
+  - id: "push"
+    name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "--all-tags"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_SERVICE}"
+    waitFor: ["build"]
+
+  # Deploy to Cloud Run
+  - id: "deploy"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "run"
+      - "deploy"
+      - "${_SERVICE}"
+      - "--image"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_SERVICE}:${SHORT_SHA}"
+      - "--region"
+      - "${_REGION}"
+      - "--port"
+      - "8080"
+      - "--platform"
+      - "managed"
+      - "--allow-unauthenticated"
+      - "--memory"
+      - "1Gi"
+      - "--cpu"
+      - "1"
+      - "--min-instances"
+      - "0"
+      - "--max-instances"
+      - "3"
+    waitFor: ["push"]
+
+images:
+  - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_SERVICE}:${SHORT_SHA}"
+  - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_SERVICE}:latest"

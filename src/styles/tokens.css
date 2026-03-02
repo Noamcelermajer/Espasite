@@ -11,7 +11,7 @@
   --color-institutional-off-white: #f8fafc;
   --color-institutional-border: #e2e8f0;
   --color-institutional-divider: #cbd5e1;
-  --color-accent-gold: #b8860b;
+  /* Visual identity: 2–3 conservative colors — Navy, Slate, White only. No accent. */
 
   /* Per-locale fonts applied on body in [locale]/layout (Inter / Assistant / Noto Sans Arabic). Fallback: */
   --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, -apple-system, sans-serif;

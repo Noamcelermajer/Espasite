@@ -40,7 +40,7 @@ export default function ExternalAuthorityLinks({ dict }: ExternalAuthorityLinksP
                 aria-hidden="true"
               />
             )}
-            <div>
+            <div className="min-w-0">
               <span className="block text-sm font-medium text-navy">{link.label}</span>
               <span className="block text-xs text-slate-muted mt-0.5">{link.description}</span>
             </div>

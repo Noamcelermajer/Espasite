@@ -33,9 +33,9 @@ export default function SiteHeader({ locale, dict }: SiteHeaderProps) {
     <header className="sticky top-0 z-50 border-b border-institutional-border bg-institutional-white/95 backdrop-blur-sm">
       {/* Trust bar */}
       <div className="border-b border-institutional-border bg-institutional-off-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 text-xs tracking-wide text-slate">
-          <span className="font-medium">{dict.header.registration}</span>
-          <span className="hidden sm:inline font-mono text-slate-muted">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-1.5 text-xs tracking-wide text-slate">
+          <span className="min-w-0 font-medium">{dict.header.registration}</span>
+          <span className="hidden flex-shrink-0 sm:inline font-mono text-slate-muted">
             {dict.header.ticketId}:&nbsp;{TICKET_ID}
           </span>
         </div>
@@ -65,7 +65,7 @@ export default function SiteHeader({ locale, dict }: SiteHeaderProps) {
                   key={key}
                   href={href}
                   className={`
-                    px-4 py-2 text-sm font-medium no-underline rounded-sm transition-colors
+                    px-4 py-2 text-sm font-medium no-underline rounded-sm transition-colors whitespace-nowrap
                     ${isActive
                       ? "bg-navy text-institutional-white"
                       : "text-navy hover:bg-institutional-off-white"

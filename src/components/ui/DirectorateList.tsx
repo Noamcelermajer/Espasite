@@ -16,7 +16,7 @@ export default function DirectorateList({ items }: DirectorateListProps) {
             <span className="flex-none flex items-center justify-center w-9 h-9 rounded-sm bg-navy text-institutional-white text-sm font-bold">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div>
+            <div className="min-w-0">
               <h3 className="text-base font-bold mb-1.5">{d.title}</h3>
               <p className="text-sm text-slate leading-relaxed">{d.description}</p>
             </div>

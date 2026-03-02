@@ -18,7 +18,7 @@ export default function ComplianceBadge({
             key={i}
             className="relative border border-institutional-border rounded-sm p-5 bg-institutional-white"
           >
-            <div className="absolute top-0 left-0 right-0 h-1 bg-navy rounded-t-sm" />
+            <div className="absolute top-0 inset-x-0 h-1 bg-navy rounded-t-sm" role="presentation" />
             <h4 className="text-sm font-bold text-navy mb-2 mt-1">{item.heading}</h4>
             <p className="text-sm text-slate leading-relaxed">{item.body}</p>
           </div>

@@ -55,9 +55,19 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Intro — conservative palette: navy, slate, white only */}
+      <section className="border-b border-institutional-border bg-institutional-white">
+        <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+          <h2 className="text-xl font-bold text-navy mb-4">{dict.home.introHeading}</h2>
+          <p className="text-slate max-w-3xl leading-relaxed">
+            {dict.home.introBody}
+          </p>
+        </div>
+      </section>
+
       {/* Quick nav grid */}
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-2xl font-bold mb-2">{dict.home.overviewTitle}</h2>
+        <h2 className="text-2xl font-bold text-navy mb-2">{dict.home.overviewTitle}</h2>
         <p className="text-slate mb-10 max-w-xl">{dict.home.overviewSubtitle}</p>
 
         <div className="grid gap-6 sm:grid-cols-2">
@@ -70,7 +80,7 @@ export default async function HomePage({ params }: PageProps) {
               <span className="flex-none flex items-center justify-center w-10 h-10 rounded-sm bg-navy text-institutional-white text-sm font-bold">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <div>
+              <div className="min-w-0">
                 <span className="block text-base font-bold text-navy group-hover:text-navy-light transition-colors">
                   {dict.nav[key]}
                 </span>

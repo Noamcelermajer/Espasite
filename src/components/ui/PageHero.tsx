@@ -11,7 +11,7 @@ export default function PageHero({ title, subtitle, imageSrc, imageAlt }: PageHe
   return (
     <div className="bg-navy text-institutional-white">
       <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 grid gap-10 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] items-center">
-        <div>
+        <div className="min-w-0">
           <h1 className="text-institutional-white text-3xl md:text-4xl font-bold tracking-tight">
             {title}
           </h1>

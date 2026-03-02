@@ -21,7 +21,7 @@ export default function CaseStudyCard({ title, items }: CaseStudyCardProps) {
             <span className="flex-none mt-0.5 text-xs font-mono font-bold text-slate-muted uppercase tracking-widest">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div>
+            <div className="min-w-0">
               <h4 className="text-sm font-bold text-navy mb-1">{cs.title}</h4>
               <p className="text-sm text-slate leading-relaxed">{cs.description}</p>
             </div>

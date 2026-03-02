@@ -23,6 +23,8 @@ export interface Dictionary {
     complianceFramework: string;
     overviewTitle: string;
     overviewSubtitle: string;
+    introHeading: string;
+    introBody: string;
     regulatoryFramework: string;
     regulatoryBody: string;
     navDescriptions: {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { TICKET_ID, AUTHORITY_LINKS } from "@/lib/links";
-import type { Locale } from "@/lib/i18n";
+import { rtlLocales, type Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/dictionaries";
 
 interface SiteFooterProps {
@@ -8,7 +8,7 @@ interface SiteFooterProps {
   dict: Dictionary;
 }
 
-export default function SiteFooter({ dict }: SiteFooterProps) {
+export default function SiteFooter({ locale, dict }: SiteFooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -39,7 +39,7 @@ export default function SiteFooter({ dict }: SiteFooterProps) {
                     aria-hidden="true"
                   />
                 )}
-                {link.label}&nbsp;&rarr;
+                {link.label}&nbsp;{rtlLocales.includes(locale) ? "\u2190" : "\u2192"}
               </a>
             ))}
           </div>

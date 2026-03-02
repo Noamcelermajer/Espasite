@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { TICKET_ID } from "@/lib/links";
 import { isValidLocale, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
@@ -20,22 +19,14 @@ export default async function HomePage({ params }: PageProps) {
     <>
       {/* Hero */}
       <section className="bg-navy text-institutional-white">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-          <Image
-            src="/images/logo-espa.png"
-            alt="ESPA Israel"
-            width={200}
-            height={66}
-            className="h-14 w-auto mb-8"
-            priority
-          />
+        <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
           <h1 className="text-institutional-white text-4xl md:text-5xl font-bold tracking-tight max-w-3xl leading-tight">
             {dict.home.heroTitle}
           </h1>
           <p className="mt-4 text-lg md:text-xl text-institutional-white/70 max-w-2xl leading-relaxed">
             {dict.home.heroSubtitle}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={`/${locale}/mandate`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-institutional-white text-navy text-sm font-semibold rounded-sm no-underline hover:bg-institutional-off-white transition-colors"
@@ -49,7 +40,7 @@ export default async function HomePage({ params }: PageProps) {
               {dict.home.complianceFramework}
             </Link>
           </div>
-          <p className="mt-10 text-xs font-mono text-institutional-white/40">
+          <p className="mt-6 text-xs font-mono text-institutional-white/40">
             {dict.header.ticketId}: {TICKET_ID}
           </p>
         </div>

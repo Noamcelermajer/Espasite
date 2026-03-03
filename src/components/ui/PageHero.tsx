@@ -11,23 +11,23 @@ export default function PageHero({ title, subtitle, imageSrc, imageAlt }: PageHe
   const hasImage = Boolean(imageSrc);
 
   return (
-    <div className="bg-navy text-institutional-white">
-      <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
-        {hasImage && (
-          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-sm">
-            <Image
-              src={imageSrc as string}
-              alt={imageAlt ?? ""}
-              fill
-              className="object-cover object-center opacity-35"
-              sizes="100vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-navy/70" />
-          </div>
-        )}
+    <div className="relative bg-navy text-institutional-white overflow-hidden">
+      {hasImage && (
+        <>
+          <Image
+            src={imageSrc as string}
+            alt={imageAlt ?? ""}
+            fill
+            className="object-cover object-center opacity-40"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-navy/70" />
+        </>
+      )}
 
-        <div className="relative max-w-3xl">
+      <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="max-w-3xl">
           <h1 className="text-institutional-white text-3xl md:text-4xl font-bold tracking-tight">
             {title}
           </h1>

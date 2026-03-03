@@ -18,11 +18,11 @@ export default function PageHero({ title, subtitle, imageSrc, imageAlt }: PageHe
             src={imageSrc as string}
             alt={imageAlt ?? ""}
             fill
-            className="object-cover object-center opacity-40"
+            className="object-cover object-center opacity-60"
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-navy/70" />
+          <div className="absolute inset-0 bg-navy/55" />
         </>
       )}
 

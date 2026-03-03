@@ -65,11 +65,13 @@ export const PAGES: Record<string, PageContent> = {
       },
       {
         title: "Systems Integrity & Digital Auditing",
-        description: "Managed by internal specialists, this directorate maintains real-time Audit Logs, rigorous Donor Vetting, and secure data environments.",
+        description:
+          "Led by the Director of Systems Integrity and managed by internal specialists, this directorate maintains real-time Audit Logs, Enhanced Due Diligence (EDD) workflows, and secure data environments.",
       },
       {
         title: "Field Verification & Security",
-        description: "Led by veterans of elite tactical units, this department conducts physical vetting of vendors and provides mission-critical security to prevent aid diversion.",
+        description:
+          "Led by veterans of elite tactical units, this department conducts Enhanced Due Diligence (EDD) and physical verification of vendors and provides mission-critical security to prevent aid diversion.",
       },
     ],
   },
@@ -143,7 +145,7 @@ export const PAGES: Record<string, PageContent> = {
       },
       {
         heading: "Risk Mitigation",
-        body: "Utilizing Vetting technology and Audit Logs ensuring complete sterility of every dollar and every shipment.",
+        body: "Utilizing Enhanced Due Diligence (EDD) technology and Audit Logs ensuring complete sterility of every dollar and every shipment.",
       },
     ],
   },

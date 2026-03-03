@@ -21,6 +21,7 @@ export interface Dictionary {
     heroSubtitle: string;
     viewMandate: string;
     complianceFramework: string;
+    submitOperationalInquiry: string;
     overviewTitle: string;
     overviewSubtitle: string;
     introHeading: string;

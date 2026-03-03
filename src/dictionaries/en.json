@@ -19,12 +19,13 @@
     "heroSubtitle": "Authorized International Humanitarian Entity — Registration Ticket ID: 2118889092",
     "viewMandate": "View Our Mandate",
     "complianceFramework": "Compliance Framework",
+    "submitOperationalInquiry": "Submit an Operational Inquiry",
     "overviewTitle": "Institutional Overview",
     "overviewSubtitle": "Navigate our organizational framework, operational architecture, and compliance standards.",
     "introHeading": "Our Role",
-    "introBody": "ESPA Israel operates as the authorized national representative office of Fundacja ESPA (Poland), facilitating large-scale humanitarian operations through strict regulatory compliance and strategic transparency. We serve as the professional bridge between international resources and local implementation, in direct coordination with Israeli regulatory authorities. Our grandfathered status and audit-ready infrastructure provide sovereign and institutional donors with a trusted, compliant channel for humanitarian impact.",
+    "introBody": "ESPA Israel operates as the authorized national representative office of Fundacja ESPA (Poland), facilitating large-scale humanitarian operations through strict regulatory compliance and strategic transparency. We serve as the professional bridge between international resources and local implementation, in direct coordination with Israeli regulatory authorities. Our pre-authorized and audit-ready regulatory status provides sovereign and institutional donors with a trusted, compliant channel for humanitarian impact.",
     "regulatoryFramework": "Regulatory Framework",
-    "regulatoryBody": "ESPA Israel holds a valid and active registration under Ticket ID 2118889092, operating with \"Grandfathered\" status in a market currently restricted to new entrants. Our systems are designed for immediate review by international oversight bodies.",
+    "regulatoryBody": "ESPA Israel holds a valid and active registration under Ticket ID 2118889092, operating as a pre-authorized entity with an established regulatory status in a market currently restricted to new entrants. Our systems are designed for immediate review by international oversight bodies.",
     "navDescriptions": {
       "mandate": "Strategic alignment, mission framework, and institutional mandate.",
       "operations": "Command structure, directorates, and operational architecture.",
@@ -68,11 +69,11 @@
         },
         {
           "title": "Systems Integrity & Digital Auditing",
-          "description": "Managed by internal specialists, this directorate maintains secure data environments, real-time Audit Logs, and automated donor vetting (KYC) to prevent any illicit resource allocation."
+          "description": "Led by the Director of Systems Integrity and managed by internal specialists, this directorate maintains secure data environments, real-time Audit Logs, and automated Enhanced Due Diligence (EDD) workflows (KYC) to prevent any illicit resource allocation."
         },
         {
           "title": "Field Verification & Security",
-          "description": "Led by veterans of elite tactical units, this department conducts physical vetting of vendors and provides mission-critical security, mitigating field risks and preventing aid diversion so assistance reaches its verified civilian destination."
+          "description": "Led by veterans of elite tactical units, this department conducts Enhanced Due Diligence (EDD) and physical verification of vendors, providing mission-critical security, mitigating field risks, and preventing aid diversion so assistance reaches its verified civilian destination."
         }
       ]
     },
@@ -101,7 +102,7 @@
         },
         {
           "heading": "Israel-Affinity Protocol",
-          "body": "A rigorous vetting process ensuring that all participants, partners, and funding sources are aligned with regional stability, security objectives, and lawful humanitarian conduct."
+          "body": "An Enhanced Due Diligence (EDD) framework ensuring that all participants, partners, and funding sources are aligned with regional stability, security objectives, and lawful humanitarian conduct."
         }
       ]
     },
@@ -123,7 +124,7 @@
         },
         {
           "heading": "Professional Management & Fiscal Integrity",
-          "body": "ESPA Israel operates under a transparent Management Fee model that covers the extensive overhead required for high-compliance operations, including specialized field security, continuous regulatory vetting, and advanced information integrity systems. By centralizing implementation costs, we provide donors with a \"Turnkey Solution\"—eliminating the need to establish costly independent operations while ensuring that resources are managed by a pre-authorized, professional entity."
+          "body": "ESPA Israel operates under a transparent Management Fee model that covers the extensive overhead required for high-compliance operations, including specialized field security, continuous Enhanced Due Diligence (EDD), and advanced information integrity systems. By centralizing implementation costs, we provide donors with a \"Turnkey Solution\"—eliminating the need to establish costly independent operations while ensuring that resources are managed by a pre-authorized, professional entity."
         },
         {
           "heading": "Total Transparency & Regulatory Compliance",
@@ -142,7 +143,7 @@
         },
         {
           "title": "Compliance-as-a-Service",
-          "description": "Providing donors with a pre-authorized operational platform that removes the need to establish local entities, while embedding KYC, vetting, and Audit Logs into every transaction and delivery."
+          "description": "Providing donors with a pre-authorized operational platform that removes the need to establish local entities, while embedding KYC, Enhanced Due Diligence (EDD), and Audit Logs into every transaction and delivery."
         }
       ],
       "valuePropsTitle": "Operational Transparency & Risk Mitigation",

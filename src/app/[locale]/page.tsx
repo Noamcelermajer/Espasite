@@ -39,6 +39,12 @@ export default async function HomePage({ params }: PageProps) {
             >
               {dict.home.complianceFramework}
             </Link>
+            <Link
+              href={`/${locale}/philanthropy`}
+              className="inline-flex items-center gap-2 px-6 py-3 border border-institutional-white/30 text-institutional-white text-sm font-semibold rounded-sm no-underline hover:bg-institutional-white/10 transition-colors"
+            >
+              {dict.home.submitOperationalInquiry}
+            </Link>
           </div>
           <p className="mt-6 text-xs font-mono text-institutional-white/40">
             {dict.header.ticketId}: {TICKET_ID}

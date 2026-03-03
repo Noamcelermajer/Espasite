@@ -3,7 +3,8 @@
     "mandate": "Mandate",
     "operations": "Operations",
     "compliance": "Compliance",
-    "philanthropy": "Philanthropy"
+    "philanthropy": "Philanthropy",
+    "contact": "Contact"
   },
   "header": {
     "registration": "Authorized National Representative Office — Fundacja ESPA (Poland)",
@@ -30,7 +31,8 @@
       "mandate": "Strategic alignment, mission framework, and institutional mandate.",
       "operations": "Command structure, directorates, and operational architecture.",
       "compliance": "Regulatory integrity, grandfathered status, and audit readiness.",
-      "philanthropy": "Sovereign donor management, case studies, and implementation."
+      "philanthropy": "Sovereign donor management, case studies, and implementation.",
+      "contact": "Institutional correspondence and operational inquiries."
     }
   },
   "pages": {
@@ -164,6 +166,16 @@
       "partnershipTitle": "Transparent Partnership, Professional Execution",
       "partnershipBody": "ESPA Israel manages projects for a transparent Management Fee covering operational, security, and enhanced compliance costs. This model guarantees donors maximum field impact while safeguarding legal, political, and reputational interests."
     }
+  },
+  "contact": {
+    "title": "Submit an Operational Inquiry",
+    "subtitle": "Institutional correspondence and partnership inquiries.",
+    "heading": "Contact Our Office",
+    "body": "For operational inquiries, sovereign partnership proposals, or institutional correspondence, please reach out to our central office. All communications are handled with the highest level of confidentiality and regulatory discretion.",
+    "emailLabel": "Office Email",
+    "email": "office@espa-israel.com",
+    "cta": "Send an Inquiry",
+    "note": "All inquiries are subject to Enhanced Due Diligence (EDD) screening in accordance with our compliance protocols."
   },
   "institutionalRefs": {
     "title": "Institutional References & Coordination Bodies",

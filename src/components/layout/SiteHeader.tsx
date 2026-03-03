@@ -13,7 +13,7 @@ interface SiteHeaderProps {
   dict: Dictionary;
 }
 
-const NAV_KEYS = ["mandate", "operations", "compliance", "philanthropy"] as const;
+const NAV_KEYS = ["mandate", "operations", "compliance", "philanthropy", "contact"] as const;
 
 export default function SiteHeader({ locale, dict }: SiteHeaderProps) {
   const pathname = usePathname();

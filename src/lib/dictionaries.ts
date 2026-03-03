@@ -6,6 +6,7 @@ export interface Dictionary {
     operations: string;
     compliance: string;
     philanthropy: string;
+    contact: string;
   };
   header: {
     registration: string;
@@ -33,6 +34,7 @@ export interface Dictionary {
       operations: string;
       compliance: string;
       philanthropy: string;
+      contact: string;
     };
   };
   pages: {
@@ -67,6 +69,16 @@ export interface Dictionary {
       partnershipTitle: string;
       partnershipBody: string;
     };
+  };
+  contact: {
+    title: string;
+    subtitle: string;
+    heading: string;
+    body: string;
+    emailLabel: string;
+    email: string;
+    cta: string;
+    note: string;
   };
   institutionalRefs: {
     title: string;

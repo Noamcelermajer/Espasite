@@ -4,7 +4,7 @@ import { isValidLocale, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { notFound } from "next/navigation";
 
-const NAV_KEYS = ["mandate", "operations", "compliance", "philanthropy"] as const;
+const NAV_KEYS = ["mandate", "operations", "compliance", "philanthropy", "contact"] as const;
 
 interface PageProps {
   params: Promise<{ locale: string }>;

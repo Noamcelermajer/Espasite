@@ -17,41 +17,6 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-navy text-institutional-white">
-        <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-          <h1 className="text-institutional-white text-4xl md:text-5xl font-bold tracking-tight max-w-3xl leading-tight">
-            {dict.home.heroTitle}
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-institutional-white/70 max-w-2xl leading-relaxed">
-            {dict.home.heroSubtitle}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href={`/${locale}/mandate`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-institutional-white text-navy text-sm font-semibold rounded-sm no-underline hover:bg-institutional-off-white transition-colors"
-            >
-              {dict.home.viewMandate}
-            </Link>
-            <Link
-              href={`/${locale}/compliance`}
-              className="inline-flex items-center gap-2 px-6 py-3 border border-institutional-white/30 text-institutional-white text-sm font-semibold rounded-sm no-underline hover:bg-institutional-white/10 transition-colors"
-            >
-              {dict.home.complianceFramework}
-            </Link>
-            <Link
-              href={`/${locale}/philanthropy`}
-              className="inline-flex items-center gap-2 px-6 py-3 border border-institutional-white/30 text-institutional-white text-sm font-semibold rounded-sm no-underline hover:bg-institutional-white/10 transition-colors"
-            >
-              {dict.home.submitOperationalInquiry}
-            </Link>
-          </div>
-          <p className="mt-6 text-xs font-mono text-institutional-white/40">
-            {dict.header.ticketId}: {TICKET_ID}
-          </p>
-        </div>
-      </section>
-
       {/* Intro — conservative palette: navy, slate, white only */}
       <section className="border-b border-institutional-border bg-institutional-white">
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">

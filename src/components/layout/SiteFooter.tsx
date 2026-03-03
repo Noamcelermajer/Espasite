@@ -35,7 +35,7 @@ export default function SiteFooter({ locale, dict }: SiteFooterProps) {
                     alt=""
                     width={20}
                     height={20}
-                    className="h-5 w-5 flex-none object-contain brightness-0 invert opacity-50 group-hover:opacity-80 transition-opacity"
+                    className="h-5 w-5 flex-none object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                     aria-hidden="true"
                   />
                 )}

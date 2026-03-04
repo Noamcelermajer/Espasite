@@ -5,7 +5,7 @@ import { getDictionary } from "@/lib/dictionaries";
 import ExternalAuthorityLinks from "@/components/ui/ExternalAuthorityLinks";
 
 export const metadata: Metadata = {
-  title: "Contact — ESPA Israel",
+  title: "Contact | ESPA Israel",
 };
 
 interface PageProps {

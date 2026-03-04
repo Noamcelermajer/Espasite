@@ -7,19 +7,19 @@ export interface AuthorityLink {
 
 export const AUTHORITY_LINKS: AuthorityLink[] = [
   {
-    label: "Israeli Gov — International Organizations",
+    label: "Israeli Gov: International Organizations",
     href: "https://www.gov.il/en/Departments/units/ninternational_organizations_unit",
     description: "Ministry of Foreign Affairs, International Organizations Unit",
     logo: "/images/emblem-israel.png",
   },
   {
-    label: "U.S. Embassy — Office of Defense Cooperation",
+    label: "U.S. Embassy: Office of Defense Cooperation",
     href: "https://il.usembassy.gov/office-of-defense-cooperation/",
     description: "United States Embassy in Israel, ODC",
     logo: "/images/logo-us-embassy.png",
   },
   {
-    label: "UNOCHA — We Coordinate",
+    label: "UNOCHA: We Coordinate",
     href: "https://www.unocha.org/we-coordinate",
     description: "United Nations Office for the Coordination of Humanitarian Affairs",
     logo: "/images/logo-unocha.svg",
@@ -40,4 +40,4 @@ export const NAV_LINKS = [
 ] as const;
 
 export const TICKET_ID = "2118889092";
-export const REGISTRATION_TEXT = "Authorized National Representative Office — Fundacja ESPA (Poland)";
+export const REGISTRATION_TEXT = "Authorized National Representative Office of Fundacja ESPA (Poland)";

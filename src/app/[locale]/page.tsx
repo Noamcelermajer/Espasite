@@ -17,7 +17,7 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <>
-      {/* Intro — conservative palette: navy, slate, white only */}
+      {/* Intro: conservative palette (navy, slate, white only) */}
       <section className="border-b border-institutional-border bg-institutional-white">
         <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
           <h2 className="text-xl font-bold text-navy mb-4">{dict.home.introHeading}</h2>

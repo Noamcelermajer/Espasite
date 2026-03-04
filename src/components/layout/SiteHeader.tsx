@@ -78,7 +78,7 @@ export default function SiteHeader({ locale, dict }: SiteHeaderProps) {
             })}
           </nav>
 
-          {/* Language switcher — desktop */}
+          {/* Language switcher (desktop) */}
           <div className="ms-4 flex items-center border-s border-institutional-border ps-4">
             {(Object.entries(localeNames) as [Locale, string][]).map(([code, name]) => (
               <Link
@@ -137,7 +137,7 @@ export default function SiteHeader({ locale, dict }: SiteHeaderProps) {
             );
           })}
 
-          {/* Language switcher — mobile */}
+          {/* Language switcher (mobile) */}
           <div className="flex items-center gap-2 pt-4 mt-2 border-t border-institutional-border">
             {(Object.entries(localeNames) as [Locale, string][]).map(([code, name]) => (
               <Link

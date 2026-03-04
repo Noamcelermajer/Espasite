@@ -83,7 +83,7 @@ export const PAGES: Record<string, PageContent> = {
     sections: [
       {
         heading: "A Distinctive Standard of Compliance",
-        body: "In the complex landscape of 2026, regulatory proficiency has become the primary prerequisite for humanitarian impact. Following a significant industry shift — which saw the closure of 37 international entities due to compliance failures — ESPA Israel has solidified its position as a Rare Institutional Asset.",
+        body: "In the complex landscape of 2026, regulatory proficiency has become the primary prerequisite for humanitarian impact. Following a significant industry shift, which saw the closure of 37 international entities due to compliance failures, ESPA Israel has solidified its position as a Rare Institutional Asset.",
       },
       {
         heading: "Grandfathered Status & Institutional Continuity",

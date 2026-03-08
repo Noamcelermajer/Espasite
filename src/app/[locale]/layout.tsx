@@ -5,6 +5,7 @@ import { isValidLocale, isRtl } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import type { Locale } from "@/lib/i18n";
 
 const inter = Inter({
@@ -45,6 +46,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <html lang={typedLocale} dir={rtl ? "rtl" : "ltr"}>
       <body className={`min-h-screen flex flex-col ${getFontClass(typedLocale)}`}>
+        <OrganizationJsonLd />
         <SiteHeader locale={typedLocale} dict={dict} />
         <main className="flex-1">{children}</main>
         <SiteFooter locale={typedLocale} dict={dict} />

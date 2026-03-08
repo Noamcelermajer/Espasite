@@ -1,10 +1,165 @@
 {
   "summary": {
-    "pallets": 0,
-    "trucks": 0,
-    "weightTonnes": 0,
-    "numberOfRequests": 0
+    "pallets": 447006,
+    "trucks": 26236,
+    "weightTonnes": 335775,
+    "numberOfRequests": 4769
   },
-  "organizations": [],
-  "fetchedAt": ""
+  "organizations": [
+    {
+      "organization": "WFP",
+      "trucks": 15305,
+      "pallets": 235635,
+      "weightTonnes": 228599,
+      "numberOfRequests": 1467
+    },
+    {
+      "organization": "World Central Kitchen",
+      "trucks": 3631,
+      "pallets": 56802,
+      "weightTonnes": 47663,
+      "numberOfRequests": 968
+    },
+    {
+      "organization": "UNICEF",
+      "trucks": 3404,
+      "pallets": 75039,
+      "weightTonnes": 24423,
+      "numberOfRequests": 762
+    },
+    {
+      "organization": "IOM",
+      "trucks": 1214,
+      "pallets": 21981,
+      "weightTonnes": 7680,
+      "numberOfRequests": 255
+    },
+    {
+      "organization": "WHO",
+      "trucks": 400,
+      "pallets": 8404,
+      "weightTonnes": 2564,
+      "numberOfRequests": 395
+    },
+    {
+      "organization": "ICRC",
+      "trucks": 365,
+      "pallets": 6869,
+      "weightTonnes": 1781,
+      "numberOfRequests": 224
+    },
+    {
+      "organization": "Catholic Relief Services",
+      "trucks": 363,
+      "pallets": 5982,
+      "weightTonnes": 2451,
+      "numberOfRequests": 77
+    },
+    {
+      "organization": "UNDP",
+      "trucks": 259,
+      "pallets": 4937,
+      "weightTonnes": 812,
+      "numberOfRequests": 75
+    },
+    {
+      "organization": "Global Empowerment Mission",
+      "trucks": 253,
+      "pallets": 5791,
+      "weightTonnes": 5142,
+      "numberOfRequests": 89
+    },
+    {
+      "organization": "UNFPA",
+      "trucks": 204,
+      "pallets": 5280,
+      "weightTonnes": 1495,
+      "numberOfRequests": 78
+    },
+    {
+      "organization": "Time of Freedom",
+      "trucks": 199,
+      "pallets": 4794,
+      "weightTonnes": 3015,
+      "numberOfRequests": 41
+    },
+    {
+      "organization": "Global Aid Network",
+      "trucks": 190,
+      "pallets": 5293,
+      "weightTonnes": 4085,
+      "numberOfRequests": 99
+    },
+    {
+      "organization": "All Hands & Hearts",
+      "trucks": 128,
+      "pallets": 2278,
+      "weightTonnes": 1051,
+      "numberOfRequests": 45
+    },
+    {
+      "organization": "FAO",
+      "trucks": 104,
+      "pallets": 3518,
+      "weightTonnes": 2645,
+      "numberOfRequests": 32
+    },
+    {
+      "organization": "Médecins Sans Frontières",
+      "trucks": 79,
+      "pallets": 1447,
+      "weightTonnes": 382,
+      "numberOfRequests": 90
+    },
+    {
+      "organization": "The Sumner Foundation",
+      "trucks": 50,
+      "pallets": 1201,
+      "weightTonnes": 1028,
+      "numberOfRequests": 11
+    },
+    {
+      "organization": "International Medical Corps",
+      "trucks": 31,
+      "pallets": 602,
+      "weightTonnes": 198,
+      "numberOfRequests": 41
+    },
+    {
+      "organization": "Cyprus Civil Defence",
+      "trucks": 18,
+      "pallets": 331,
+      "weightTonnes": 313,
+      "numberOfRequests": 1
+    },
+    {
+      "organization": "Samaritan's Purse",
+      "trucks": 16,
+      "pallets": 324,
+      "weightTonnes": 197,
+      "numberOfRequests": 13
+    },
+    {
+      "organization": "Solidarités international",
+      "trucks": 12,
+      "pallets": 270,
+      "weightTonnes": 41,
+      "numberOfRequests": 4
+    },
+    {
+      "organization": "American Near East Refugee Aid",
+      "trucks": 10,
+      "pallets": 207,
+      "weightTonnes": 195,
+      "numberOfRequests": 1
+    },
+    {
+      "organization": "UK-Med",
+      "trucks": 1,
+      "pallets": 21,
+      "weightTonnes": 6,
+      "numberOfRequests": 1
+    }
+  ],
+  "fetchedAt": "2026-03-08T10:33:41.716Z"
 }

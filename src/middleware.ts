@@ -10,11 +10,13 @@ export function middleware(request: NextRequest) {
 
   if (pathnameHasLocale) return;
 
-  // Skip static files / API / internal Next.js routes
+  // Skip static files / API / internal Next.js routes / SEO
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/images") ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml" ||
     pathname.includes(".")
   ) {
     return;
@@ -36,5 +38,5 @@ function detectLocale(header: string): string {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|images|favicon.ico).*)"],
+  matcher: ["/((?!_next|api|images|favicon.ico|robots.txt|sitemap.xml).*)"],
 };

@@ -19,8 +19,9 @@ export default function PageHero({ title, subtitle, imageSrc, imageAlt }: PageHe
             alt={imageAlt ?? ""}
             fill
             className="object-cover object-center opacity-60"
-            sizes="100vw"
+            sizes="(max-width: 1024px) 100vw, 1280px"
             priority
+            quality={75}
           />
           <div className="absolute inset-0 bg-navy/55" />
         </>

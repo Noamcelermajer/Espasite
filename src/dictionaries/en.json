@@ -186,6 +186,17 @@
     "subtitle": "Humanitarian aid movements collected from crossings along Gaza's perimeter, as reported by the UN2720 Mechanism.",
     "viewDashboard": "View live dashboard",
     "disclaimer": "Data reflects UN-manifested consignments processed through the UN2720 Mechanism and is subject to change.",
-    "sourceLabel": "About the UN2720 Mechanism"
+    "sourceLabel": "About the UN2720 Mechanism",
+    "statPallets": "Pallets",
+    "statTrucks": "Trucks",
+    "statWeight": "Weight (t)",
+    "statRequests": "Number of Requests",
+    "tableTitle": "Summary by Organization",
+    "tableOrg": "Organization",
+    "tableTrucks": "Trucks",
+    "tablePallets": "Pallets",
+    "tableWeight": "Weight (t)",
+    "tableRequests": "Number of Requests",
+    "noDataHint": "View live dashboard for current figures."
   }
 }

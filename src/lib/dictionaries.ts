@@ -90,6 +90,17 @@ export interface Dictionary {
     viewDashboard: string;
     disclaimer: string;
     sourceLabel: string;
+    statPallets: string;
+    statTrucks: string;
+    statWeight: string;
+    statRequests: string;
+    tableTitle: string;
+    tableOrg: string;
+    tableTrucks: string;
+    tablePallets: string;
+    tableWeight: string;
+    tableRequests: string;
+    noDataHint: string;
   };
 }
 

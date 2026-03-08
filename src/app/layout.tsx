@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   },
   description:
     "ESPA Israel operates as the authorized national representative office of Fundacja ESPA (Poland), facilitating large-scale humanitarian operations through strict regulatory compliance.",
+  icons: {
+    icon: "/images/logo-espa.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Puppeteer
-        run: npm install puppeteer
-
       - name: Run scraper
         run: npm run scrape:un2720
         env:

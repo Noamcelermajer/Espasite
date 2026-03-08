@@ -16,24 +16,23 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
   return (
     <section className="border-t border-institutional-border bg-institutional-off-white">
       <div className="mx-auto max-w-6xl px-6 py-12">
-        {/* Intro + CTA */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div className="min-w-0">
-            <h2 className="text-xl font-bold text-navy mb-2">{t.title}</h2>
-            <p className="text-slate text-sm leading-relaxed max-w-xl">{t.subtitle}</p>
-            <Link
-              href={UN2720_COLLECTED_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-institutional-white text-sm font-semibold rounded-sm no-underline hover:bg-navy-light transition-colors"
-            >
-              {t.viewDashboard}
-              <span aria-hidden="true">&#8599;</span>
-            </Link>
-          </div>
+        {/* Intro + CTA (on top) */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-navy mb-2">{t.title}</h2>
+          <p className="text-slate text-sm leading-relaxed max-w-xl">{t.subtitle}</p>
+          <Link
+            href={UN2720_COLLECTED_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-institutional-white text-sm font-semibold rounded-sm no-underline hover:bg-navy-light transition-colors"
+          >
+            {t.viewDashboard}
+            <span aria-hidden="true">&#8599;</span>
+          </Link>
+        </div>
 
-          {/* Stat cards: Pallets, Trucks, Weight, Requests */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 shrink-0">
+        {/* Stat cards: Pallets, Trucks, Weight, Requests */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             <div className="bg-institutional-white border border-institutional-border rounded-sm p-3 text-center">
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statPallets}</p>
               <p className="text-lg font-bold text-navy mt-0.5">
@@ -58,7 +57,6 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
                 {summary ? summary.numberOfRequests.toLocaleString() : "\u2014"}
               </p>
             </div>
-          </div>
         </div>
 
         {/* Summary by Organization table */}

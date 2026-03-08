@@ -28,37 +28,23 @@ export interface Un2720Data {
   fetchedAt: string;
 }
 
+/** Base URL of this site; scraped data is at /data/un2720.json. */
+const SITE_BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://www.espa-israel.com";
+
 /**
- * Attempt to fetch and parse UN2720 collected page for embedded data.
- * The dashboard is client-rendered; this may return null if no data is in HTML.
- * Revalidate every 1 hour to avoid over-requesting.
+ * Load UN2720 data from our scraped snapshot (updated by cron 4x daily).
+ * Revalidate every 30 min so we pick up new scrapes without over-requesting.
  */
 export async function fetchUn2720CollectedData(): Promise<Un2720Data | null> {
   try {
-    const res = await fetch(UN2720_COLLECTED_URL, {
-      next: { revalidate: 3600 },
-      headers: { "User-Agent": "ESPA-Israel-Site/1.0 (compliance; +https://www.espa-israel.com)" },
-    });
+    const url = `${SITE_BASE.replace(/\/$/, "")}/data/un2720.json`;
+    const res = await fetch(url, { next: { revalidate: 1800 } });
     if (!res.ok) return null;
-    const html = await res.text();
-    // Try to find JSON in script tags (common SPA patterns)
-    const scriptMatch = html.match(/<script[^>]*>([\s\S]*?)<\/script>/gi);
-    if (!scriptMatch) return null;
-    for (const script of scriptMatch) {
-      const inner = script.replace(/<\/?script[^>]*>/gi, "").trim();
-      const jsonMatch = inner.match(/\{[\s\S]*"trucks"[\s\S]*\}/);
-      if (jsonMatch) {
-        try {
-          const data = JSON.parse(jsonMatch[0]) as unknown;
-          if (data && typeof data === "object" && "summary" in data) {
-            return data as Un2720Data;
-          }
-        } catch {
-          // ignore parse errors
-        }
-      }
-    }
-    return null;
+    const data = (await res.json()) as unknown;
+    if (!data || typeof data !== "object" || !("summary" in data)) return null;
+    const out = data as Un2720Data;
+    if (!out.summary || !Array.isArray(out.organizations)) return null;
+    return out;
   } catch {
     return null;
   }

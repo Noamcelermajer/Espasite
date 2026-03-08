@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scrape:un2720": "node scripts/scrape-un2720.mjs"
   },
   "dependencies": {
     "next": "^15.3.3",
@@ -14,6 +15,7 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "puppeteer": "^23.0.0",
     "@eslint/eslintrc": "^3.3.4",
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^22.15.0",

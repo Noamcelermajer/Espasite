@@ -3,6 +3,7 @@ import { TICKET_ID } from "@/lib/links";
 import { isValidLocale, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionaries";
 import { notFound } from "next/navigation";
+import Un2720Section from "@/components/ui/Un2720Section";
 
 const NAV_KEYS = ["mandate", "operations", "compliance", "philanthropy", "contact"] as const;
 
@@ -54,6 +55,9 @@ export default async function HomePage({ params }: PageProps) {
           ))}
         </div>
       </section>
+
+      {/* UN2720 monitoring: live dashboard embed + link */}
+      <Un2720Section dict={dict} />
 
       {/* Trust strip */}
       <section className="border-t border-institutional-border bg-institutional-off-white">

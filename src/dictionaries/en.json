@@ -180,5 +180,12 @@
   "institutionalRefs": {
     "title": "Institutional References & Coordination Bodies",
     "fallback": "External institutional sources may experience intermittent availability. Links remain accessible for direct navigation."
+  },
+  "un2720": {
+    "title": "UN2720 Monitoring & Tracking",
+    "subtitle": "Humanitarian aid movements collected from crossings along Gaza's perimeter, as reported by the UN2720 Mechanism.",
+    "viewDashboard": "View live dashboard",
+    "disclaimer": "Data reflects UN-manifested consignments processed through the UN2720 Mechanism and is subject to change.",
+    "sourceLabel": "About the UN2720 Mechanism"
   }
 }

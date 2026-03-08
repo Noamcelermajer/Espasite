@@ -84,6 +84,13 @@ export interface Dictionary {
     title: string;
     fallback: string;
   };
+  un2720: {
+    title: string;
+    subtitle: string;
+    viewDashboard: string;
+    disclaimer: string;
+    sourceLabel: string;
+  };
 }
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {

@@ -28,17 +28,36 @@ export interface Un2720Data {
   fetchedAt: string;
 }
 
-/** Base URL of this site; scraped data is at /data/un2720.json. */
-const SITE_BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://www.espa-israel.com";
+/** URL of scraped JSON. Set UN2720_DATA_URL (e.g. GCS public URL) or UN2720_GCS_BUCKET for server-side GCS read. */
+const DATA_URL =
+  process.env.UN2720_DATA_URL ||
+  `${(process.env.NEXT_PUBLIC_SITE_URL || "https://www.espa-israel.com").replace(/\/$/, "")}/data/un2720.json`;
+
+async function fetchFromGcs(): Promise<Un2720Data | null> {
+  const bucket = process.env.UN2720_GCS_BUCKET;
+  const object = process.env.UN2720_GCS_OBJECT || "un2720.json";
+  if (!bucket) return null;
+  try {
+    const { Storage } = await import("@google-cloud/storage");
+    const storage = new Storage();
+    const [contents] = await storage.bucket(bucket).file(object).download();
+    const data = JSON.parse(contents.toString()) as unknown;
+    if (!data || typeof data !== "object" || !("summary" in data)) return null;
+    const out = data as Un2720Data;
+    if (!out.summary || !Array.isArray(out.organizations)) return null;
+    return out;
+  } catch {
+    return null;
+  }
+}
 
 /**
- * Load UN2720 data from our scraped snapshot (updated by cron 4x daily).
- * Revalidate every 30 min so we pick up new scrapes without over-requesting.
+ * Load UN2720 data from GCS (when UN2720_GCS_BUCKET set), backend URL, or static fallback. Revalidate every 30 min.
  */
 export async function fetchUn2720CollectedData(): Promise<Un2720Data | null> {
+  if (process.env.UN2720_GCS_BUCKET) return fetchFromGcs();
   try {
-    const url = `${SITE_BASE.replace(/\/$/, "")}/data/un2720.json`;
-    const res = await fetch(url, { next: { revalidate: 1800 } });
+    const res = await fetch(DATA_URL, { next: { revalidate: 1800 } });
     if (!res.ok) return null;
     const data = (await res.json()) as unknown;
     if (!data || typeof data !== "object" || !("summary" in data)) return null;

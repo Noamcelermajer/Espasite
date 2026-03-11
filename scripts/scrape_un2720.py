@@ -1,106 +1,110 @@
 #!/usr/bin/env python3
 """
-Scrape UN2720 tracking/collected and output JSON. Optionally upload to GCS.
+Scrape UN2720 collected data JSON API and output a normalized JSON file.
 Run: pip install -r requirements-scrape.txt && python scripts/scrape_un2720.py
 Env: GCS_BUCKET, GCS_OBJECT (e.g. un2720.json) to upload; otherwise prints to stdout.
 """
+from __future__ import annotations
+
 import json
 import os
 import sys
 from datetime import datetime, timezone
+from typing import Any, Dict, List
 
-from playwright.sync_api import sync_playwright
+import requests
 
-URL = "https://app.un2720.org/tracking/collected"
+API_URL = "https://app.un2720.org/fetchCollectedData"
 
 
-def parse_num(s: str) -> int:
-    if not s:
+def parse_num(value: Any) -> int | float:
+    if value is None:
         return 0
-    s = str(s).replace(" ", "").replace(",", "")
+    s = str(value)
+    s = s.replace(" ", "").replace(",", "")
     try:
-        return int(float(s))
+        # Some fields are floats (e.g. weightTonnes)
+        return float(s)
     except (ValueError, TypeError):
         return 0
 
 
-def scrape() -> dict:
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-setuid-sandbox"])
-        try:
-            page = browser.new_page()
-            api_payloads: list[dict] = []
+def scrape() -> Dict[str, Any]:
+    # Match dashboard date range behaviour (full history until today)
+    params = {
+        "start": "2025-05-19",
+        "end": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+    }
+    headers = {
+        "referer": "https://app.un2720.org/tracking/collected",
+        "user-agent": "ESPA-Israel-Scraper/1.0 (+https://www.espa-israel.com)",
+        "accept": "application/json, text/plain, */*",
+    }
 
-            # Capture JSON API responses used by the dashboard (time series, commodities, crossings, etc.)
-            def handle_response(response) -> None:
-                try:
-                    url = response.url
-                    # Only keep same-origin JSON responses
-                    if not url.startswith("https://app.un2720.org/"):
-                        return
-                    content_type = (response.headers.get("content-type") or "").lower()
-                    if "application/json" not in content_type:
-                        return
-                    body = response.json()
-                    api_payloads.append({"url": url, "body": body})
-                except Exception:
-                    # Best-effort capture; ignore failures so scraping never breaks on one bad response
-                    return
+    resp = requests.get(API_URL, params=params, headers=headers, timeout=60)
+    resp.raise_for_status()
+    raw = resp.json()
 
-            page.on("response", handle_response)
-            page.set_extra_http_headers({"User-Agent": "ESPA-Israel-Scraper/1.0 (+https://www.espa-israel.com)"})
-            page.goto(URL, wait_until="networkidle", timeout=60000)
-            page.wait_for_timeout(3000)
+    # Top-level summary cards (exact values from API)
+    summary = {
+        "pallets": int(parse_num(raw.get("totalPallets"))),
+        "trucks": int(parse_num(raw.get("totalTrucks"))),
+        "weightTonnes": float(parse_num(raw.get("totalWeight"))),
+        "numberOfRequests": int(parse_num(raw.get("totalUtns"))),
+    }
 
-            # Summary from page text
-            text = page.inner_text("body")
-            summary = {"pallets": 0, "trucks": 0, "weightTonnes": 0, "numberOfRequests": 0}
-            labels = ["Pallets", "Trucks", "Weight (t)", "Number of Requests"]
-            keys = ["pallets", "trucks", "weightTonnes", "numberOfRequests"]
-            for label, key in zip(labels, keys):
-                i = text.find(label)
-                if i != -1:
-                    snippet = text[i + len(label) : i + len(label) + 30]
-                    for word in snippet.replace(",", " ").split():
-                        if word.replace(".", "").isdigit():
-                            summary[key] = parse_num(word)
-                            break
+    # Organizations: prefer orgTableData (normalized objects). Fallback to label/count arrays.
+    orgs: List[Dict[str, Any]] = []
 
-            # Table
-            orgs = []
-            table = page.query_selector("table")
-            if table:
-                headers = [th.inner_text().strip().lower() for th in table.query_selector_all("thead th")]
-                col_org = next((i for i, h in enumerate(headers) if "organization" in h or "org" in h), 0)
-                col_trucks = next((i for i, h in enumerate(headers) if "truck" in h), 1)
-                col_pallets = next((i for i, h in enumerate(headers) if "pallet" in h), 2)
-                col_weight = next((i for i, h in enumerate(headers) if "weight" in h), 3)
-                col_req = next((i for i, h in enumerate(headers) if "request" in h), 4)
-                for tr in table.query_selector_all("tbody tr"):
-                    cells = tr.query_selector_all("td")
-                    if len(cells) < 2:
-                        continue
-                    def get(i):
-                        return cells[i].inner_text().strip() if 0 <= i < len(cells) else ""
-                    orgs.append({
-                        "organization": get(col_org),
-                        "trucks": parse_num(get(col_trucks)),
-                        "pallets": parse_num(get(col_pallets)),
-                        "weightTonnes": parse_num(get(col_weight)),
-                        "numberOfRequests": parse_num(get(col_req)),
-                    })
-            return {
-                "summary": summary,
-                "organizations": [o for o in orgs if o["organization"] or o["trucks"] or o["pallets"]],
-                "fetchedAt": datetime.now(tz=timezone.utc).isoformat(),
-                # Raw API payloads power charts such as:
-                # - weight by crossing
-                # - collected weight by commodity
-                # - collected daily trends (pallets, trucks, weight over time)
-                "apiPayloads": api_payloads,
-            }
-        finally:
-            browser.close()
+    table_data = raw.get("orgTableData")
+    if isinstance(table_data, list) and table_data:
+        for row in table_data:
+            if not isinstance(row, dict):
+                continue
+            name = row.get("organization") or row.get("name") or row.get("org")
+            if not name:
+                continue
+            orgs.append(
+                {
+                    "organization": str(name),
+                    "trucks": int(parse_num(row.get("trucks") or row.get("truckCount"))),
+                    "pallets": int(parse_num(row.get("pallets") or row.get("palletCount"))),
+                    "weightTonnes": float(parse_num(row.get("weight") or row.get("weightTonnes"))),
+                    "numberOfRequests": int(parse_num(row.get("utns") or row.get("requests") or 0)),
+                }
+            )
+    else:
+        labels = raw.get("orgLabels") or []
+        truck_counts = raw.get("orgTruckCounts") or []
+        pallet_counts = raw.get("orgPalletCounts") or []
+        for idx, name in enumerate(labels):
+            trucks = truck_counts[idx] if idx < len(truck_counts) else 0
+            pallets = pallet_counts[idx] if idx < len(pallet_counts) else 0
+            orgs.append(
+                {
+                    "organization": str(name),
+                    "trucks": int(parse_num(trucks)),
+                    "pallets": int(parse_num(pallets)),
+                    # Weight / requests not directly available per org in this shape
+                    "weightTonnes": 0.0,
+                    "numberOfRequests": 0,
+                }
+            )
+
+    # Attach full API payload for charts (daily trends, commodity pie, crossings, etc.)
+    api_payloads = [
+        {
+            "url": API_URL,
+            "body": raw,
+        }
+    ]
+
+    return {
+        "summary": summary,
+        "organizations": orgs,
+        "fetchedAt": datetime.now(tz=timezone.utc).isoformat(),
+        "apiPayloads": api_payloads,
+    }
 
 
 def main() -> None:
@@ -112,6 +116,7 @@ def main() -> None:
     if bucket:
         try:
             from google.cloud import storage
+
             client = storage.Client()
             blob = client.bucket(bucket).blob(obj)
             blob.upload_from_string(payload, content_type="application/json")

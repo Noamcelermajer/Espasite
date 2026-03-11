@@ -65,7 +65,7 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
         {/* Summary text + inline stats, visually aligned with UN2720 header block */}
         <div className="mt-6 bg-institutional-white border border-institutional-border rounded-sm px-6 py-5 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">
-            Collected from crossings along Gaza&apos;s perimeter
+            Collected From any of the crossings along Gaza&apos;s perimeter
           </p>
           <div className="mt-4 grid gap-3 text-sm text-slate sm:grid-cols-2 lg:grid-cols-4">
             <div>

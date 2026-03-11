@@ -47,26 +47,12 @@ async function scrape() {
     await new Promise((r) => setTimeout(r, 3000));
 
     const data = await page.evaluate(() => {
-      const summary = { pallets: 0, trucks: 0, weightTonnes: 0, numberOfRequests: 0 };
       const orgRows = [];
 
-      const text = document.body.innerText;
       const parseNum = (s) => {
         const n = parseInt(String(s).replace(/\s|,/g, ""), 10);
         return Number.isNaN(n) ? 0 : n;
       };
-
-      // Find stat blocks: look for labels "Pallets", "Trucks", "Weight (t)", "Number of Requests" and nearby numbers
-      const statLabels = ["Pallets", "Trucks", "Weight (t)", "Number of Requests"];
-      const statKeys = ["pallets", "trucks", "weightTonnes", "numberOfRequests"];
-      for (let i = 0; i < statLabels.length; i++) {
-        const label = statLabels[i];
-        const idx = text.indexOf(label);
-        if (idx === -1) continue;
-        const after = text.slice(idx + label.length, idx + label.length + 30);
-        const match = after.match(/\d[\d\s,.]*/);
-        if (match) summary[statKeys[i]] = parseNum(match[0]);
-      }
 
       // Table: find table and extract rows (Organization, Trucks, Pallets, Weight (t), Number of Requests)
       const table = document.querySelector("table");
@@ -93,6 +79,13 @@ async function scrape() {
           });
         }
       }
+
+      const summary = {
+        pallets: orgRows.reduce((sum, r) => sum + r.pallets, 0),
+        trucks: orgRows.reduce((sum, r) => sum + r.trucks, 0),
+        weightTonnes: orgRows.reduce((sum, r) => sum + r.weightTonnes, 0),
+        numberOfRequests: orgRows.reduce((sum, r) => sum + r.numberOfRequests, 0),
+      };
 
       return { summary, organizations: orgRows };
     });

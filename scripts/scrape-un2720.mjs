@@ -20,6 +20,22 @@ async function scrape() {
   });
   try {
     const page = await browser.newPage();
+    const apiPayloads = [];
+
+    // Capture JSON API responses that back the dashboard charts (crossings, commodities, daily trends, etc.)
+    page.on("response", async (response) => {
+      try {
+        const url = response.url();
+        if (!url.startsWith("https://app.un2720.org/")) return;
+        const contentType = (response.headers()["content-type"] || "").toLowerCase();
+        if (!contentType.includes("application/json")) return;
+        const body = await response.json().catch(() => null);
+        if (!body) return;
+        apiPayloads.push({ url, body });
+      } catch {
+        // Ignore capture errors; scraping must remain resilient
+      }
+    });
     await page.setUserAgent("ESPA-Israel-Scraper/1.0 (+https://www.espa-israel.com)");
     await page.goto(URL, { waitUntil: "networkidle2", timeout: 60000 });
 
@@ -85,6 +101,11 @@ async function scrape() {
       summary: data.summary,
       organizations: data.organizations.filter((r) => r.organization || r.trucks || r.pallets),
       fetchedAt: new Date().toISOString(),
+      // Raw API payloads include data for:
+      // - weight by crossing
+      // - collected weight by commodity
+      // - collected daily trends (pallets / trucks / weight over time)
+      apiPayloads,
     };
     return out;
   } finally {

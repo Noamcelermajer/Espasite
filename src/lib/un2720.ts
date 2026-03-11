@@ -22,10 +22,25 @@ export interface Un2720OrgRow {
   numberOfRequests: number;
 }
 
+export interface Un2720ApiPayload {
+  url: string;
+  // Shape is controlled by the UN2720 dashboard backend; we keep it as unknown
+  // and let chart components narrow it as needed.
+  body: unknown;
+}
+
 export interface Un2720Data {
   summary: Un2720Summary;
   organizations: Un2720OrgRow[];
   fetchedAt: string;
+  /**
+   * Raw JSON responses captured from the UN2720 dashboard.
+   * These power advanced charts such as:
+   * - weight by crossing
+   * - collected weight by commodity
+   * - collected daily trends (pallets / trucks / weight over time)
+   */
+  apiPayloads?: Un2720ApiPayload[];
 }
 
 /** URL of scraped JSON. Set UN2720_DATA_URL (e.g. GCS public URL) or UN2720_GCS_BUCKET for server-side GCS read. */

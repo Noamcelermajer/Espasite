@@ -29,6 +29,25 @@ def scrape() -> dict:
         browser = p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-setuid-sandbox"])
         try:
             page = browser.new_page()
+            api_payloads: list[dict] = []
+
+            # Capture JSON API responses used by the dashboard (time series, commodities, crossings, etc.)
+            def handle_response(response) -> None:
+                try:
+                    url = response.url
+                    # Only keep same-origin JSON responses
+                    if not url.startswith("https://app.un2720.org/"):
+                        return
+                    content_type = (response.headers.get("content-type") or "").lower()
+                    if "application/json" not in content_type:
+                        return
+                    body = response.json()
+                    api_payloads.append({"url": url, "body": body})
+                except Exception:
+                    # Best-effort capture; ignore failures so scraping never breaks on one bad response
+                    return
+
+            page.on("response", handle_response)
             page.set_extra_http_headers({"User-Agent": "ESPA-Israel-Scraper/1.0 (+https://www.espa-israel.com)"})
             page.goto(URL, wait_until="networkidle", timeout=60000)
             page.wait_for_timeout(3000)
@@ -74,6 +93,11 @@ def scrape() -> dict:
                 "summary": summary,
                 "organizations": [o for o in orgs if o["organization"] or o["trucks"] or o["pallets"]],
                 "fetchedAt": datetime.now(tz=timezone.utc).isoformat(),
+                # Raw API payloads power charts such as:
+                # - weight by crossing
+                # - collected weight by commodity
+                # - collected daily trends (pallets, trucks, weight over time)
+                "apiPayloads": api_payloads,
             }
         finally:
             browser.close()

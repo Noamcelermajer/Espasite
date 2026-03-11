@@ -18,14 +18,14 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
   const totalPallets = topOrganizations.reduce((sum, row) => sum + row.pallets, 0);
 
   const pieColors = [
-    "#0f172a", // navy
-    "#1d4ed8",
-    "#0ea5e9",
-    "#14b8a6",
-    "#22c55e",
-    "#eab308",
-    "#f97316",
-    "#ef4444",
+    "#1565c0",
+    "#1e88e5",
+    "#42a5f5",
+    "#29b6f6",
+    "#26c6da",
+    "#26a69a",
+    "#ffee58",
+    "#ffb300",
   ];
 
   let currentOffset = 0;
@@ -62,54 +62,62 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
             <span aria-hidden="true">&#8599;</span>
           </Link>
         </div>
-
-        {/* Top-level stats */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <div className="bg-institutional-white border border-institutional-border rounded-sm p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statPallets}</p>
-            <p className="text-lg font-bold text-navy mt-0.5">
-              {summary ? summary.pallets.toLocaleString() : "\u2014"}
-            </p>
-          </div>
-          <div className="bg-institutional-white border border-institutional-border rounded-sm p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statTrucks}</p>
-            <p className="text-lg font-bold text-navy mt-0.5">
-              {summary ? summary.trucks.toLocaleString() : "\u2014"}
-            </p>
-          </div>
-          <div className="bg-institutional-white border border-institutional-border rounded-sm p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statWeight}</p>
-            <p className="text-lg font-bold text-navy mt-0.5">
-              {summary ? summary.weightTonnes.toLocaleString() : "\u2014"}
-            </p>
-          </div>
-          <div className="bg-institutional-white border border-institutional-border rounded-sm p-3 text-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statRequests}</p>
-            <p className="text-lg font-bold text-navy mt-0.5">
-              {summary ? summary.numberOfRequests.toLocaleString() : "\u2014"}
-            </p>
+        {/* Summary text + inline stats, visually aligned with UN2720 header block */}
+        <div className="mt-6 bg-institutional-white border border-institutional-border rounded-sm px-6 py-5 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">
+            Collected from crossings along Gaza&apos;s perimeter
+          </p>
+          <div className="mt-4 grid gap-3 text-sm text-slate sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statPallets}</p>
+              {t.statPallets}{" "}
+              <span className="font-semibold text-navy">
+                {summary ? summary.pallets.toLocaleString() : "—"}
+              </span>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statTrucks}</p>
+              {t.statTrucks}{" "}
+              <span className="font-semibold text-navy">
+                {summary ? summary.trucks.toLocaleString() : "—"}
+              </span>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statWeight}</p>
+              {t.statWeight}{" "}
+              <span className="font-semibold text-navy">
+                {summary ? summary.weightTonnes.toLocaleString() : "—"}
+              </span>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">{t.statRequests}</p>
+              {t.statRequests}{" "}
+              <span className="font-semibold text-navy">
+                {summary ? summary.numberOfRequests.toLocaleString() : "—"}
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Charts: bar + pie-style share */}
+        {/* Charts: bar + pie-style share, no tables */}
         {topOrganizations.length > 0 && (
           <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.5fr)]">
-            {/* Trucks by organization (bar chart) */}
-            <div className="bg-institutional-white border border-institutional-border rounded-sm p-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-muted mb-3">
+            {/* Trucks by organization (bar chart), styled similarly to UN2720 charts */}
+            <div className="bg-institutional-white border border-institutional-border rounded-sm px-6 py-5 shadow-sm">
+              <h3 className="text-sm font-semibold text-slate mb-4">
                 Trucks by organization (top {topOrganizations.length})
               </h3>
               <div className="space-y-2">
                 {topOrganizations.map((row) => (
                   <div key={row.organization} className="flex items-center gap-3">
-                    <span className="text-xs text-slate min-w-[5rem] truncate">{row.organization}</span>
-                    <div className="flex-1 bg-institutional-off-white h-2 rounded-full overflow-hidden">
+                    <span className="text-[11px] text-slate min-w-[6rem] truncate">{row.organization}</span>
+                    <div className="flex-1 bg-slate-100 h-3 rounded-sm overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-navy"
+                        className="h-full bg-[#1e88e5]"
                         style={{ width: `${maxTrucks ? (row.trucks / maxTrucks) * 100 : 0}%` }}
                       />
                     </div>
-                    <span className="text-xs font-mono text-slate-muted min-w-[3rem] text-right">
+                    <span className="text-[11px] font-mono text-slate-muted min-w-[3rem] text-right">
                       {row.trucks.toLocaleString()}
                     </span>
                   </div>
@@ -117,17 +125,17 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
               </div>
             </div>
 
-            {/* Pallet share (pie-style) */}
-            <div className="bg-institutional-white border border-institutional-border rounded-sm p-4 flex flex-col items-stretch">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-muted mb-3">
+            {/* Pallet share (pie-style), styled as UN2720-style legend + donut */}
+            <div className="bg-institutional-white border border-institutional-border rounded-sm px-6 py-5 flex flex-col items-stretch shadow-sm">
+              <h3 className="text-sm font-semibold text-slate mb-4">
                 Pallet share by organization (top {topOrganizations.length})
               </h3>
               <div className="flex items-center gap-4">
                 <div
-                  className="relative h-32 w-32 shrink-0 rounded-full border border-institutional-border bg-institutional-off-white"
+                  className="relative h-36 w-36 shrink-0 rounded-full border border-slate-200 bg-white"
                   style={pieStyle}
                 >
-                  <div className="absolute inset-5 rounded-full bg-institutional-white flex items-center justify-center">
+                  <div className="absolute inset-6 rounded-full bg-white flex items-center justify-center">
                     <span className="text-[10px] text-slate-muted text-center leading-tight">
                       Total
                       <br />
@@ -135,7 +143,7 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
                     </span>
                   </div>
                 </div>
-                <div className="flex-1 space-y-1 max-h-32 overflow-y-auto pr-1 text-xs">
+                <div className="flex-1 space-y-1 max-h-36 overflow-y-auto pr-1 text-xs">
                   {topOrganizations.map((row, index) => {
                     const color = pieColors[index % pieColors.length];
                     const ratio = totalPallets ? (row.pallets / totalPallets) * 100 : 0;
@@ -159,67 +167,45 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
           </div>
         )}
 
-        {/* Summary by Organization table */}
-        <div className="mt-10 rounded-sm border border-institutional-border bg-institutional-white overflow-hidden">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-muted px-4 py-3 border-b border-institutional-border">
-            {t.tableTitle}
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-institutional-border bg-institutional-off-white">
-                  <th className="text-start font-semibold text-navy px-4 py-3">{t.tableOrg}</th>
-                  <th className="text-right font-semibold text-navy px-4 py-3">{t.tableTrucks}</th>
-                  <th className="text-right font-semibold text-navy px-4 py-3">{t.tablePallets}</th>
-                  <th className="text-right font-semibold text-navy px-4 py-3">{t.tableWeight}</th>
-                  <th className="text-right font-semibold text-navy px-4 py-3">{t.tableRequests}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {organizations.length > 0 ? (
-                  organizations.map((row, i) => (
-                    <tr key={i} className="border-b border-institutional-border last:border-b-0">
-                      <td className="px-4 py-3 text-slate text-start">{row.organization}</td>
-                      <td className="px-4 py-3 text-slate text-right tabular-nums">{row.trucks.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-slate text-right tabular-nums">{row.pallets.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-slate text-right tabular-nums">
-                        {row.weightTonnes.toLocaleString()}
-                      </td>
-                      <td className="px-4 py-3 text-slate text-right tabular-nums">
-                        {row.numberOfRequests.toLocaleString()}
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={5} className="px-4 py-6 text-center text-slate-muted">
-                      <Link
-                        href={UN2720_COLLECTED_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-navy underline underline-offset-2"
-                      >
-                        {t.noDataHint}
-                      </Link>
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+        <div className="mt-6 text-xs text-slate-muted max-w-3xl space-y-2">
+          <p className="font-semibold uppercase tracking-wider">Disclaimers</p>
+          <p>
+            Data presented on this dashboard include only humanitarian relief consignments processed through the{" "}
+            <span className="font-semibold">UN2720</span> Mechanism. For more on how the{" "}
+            <span className="font-semibold">UN2720</span> Mechanism works, please go to{" "}
+            <a
+              href={UN2720_INFO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-navy underline underline-offset-2"
+            >
+              {UN2720_INFO_URL}
+            </a>
+            .
+          </p>
+          <p>
+            The numbers expressed reflect data available through a combination of on-the-ground{" "}
+            <span className="font-semibold">UN2720</span> Monitors and cross-verification with partners. They remain
+            subject to change, reflecting the movement of consignments and the dynamic nature of the context.
+          </p>
+          <p>
+            Trucks on the Gaza side of the Kerem Shalom/Karem Abu Salem and Erez West/Zikim crossings are typically
+            smaller than those arriving from the Israeli side. As a result, the number of trucks reaching the crossings
+            does not correspond directly to the number collected on the Gaza side.
+          </p>
+          <p>
+            Data shown here are represented exactly as they are currently made publicly available via the official{" "}
+            <a
+              href={UN2720_COLLECTED_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-navy underline underline-offset-2"
+            >
+              UN2720 Monitoring &amp; Tracking dashboard
+            </a>
+            .
+          </p>
         </div>
-
-        <p className="mt-6 text-xs text-slate-muted max-w-2xl">
-          {t.disclaimer}{" "}
-          <a
-            href={UN2720_INFO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-navy underline underline-offset-2"
-          >
-            {t.sourceLabel}
-          </a>
-        </p>
       </div>
     </section>
   );

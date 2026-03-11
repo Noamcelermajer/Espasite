@@ -1,6 +1,6 @@
-\"use client\";
+"use client";
 
-import { useMemo } from \"react\";
+import { useMemo } from "react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -11,10 +11,10 @@ import {
   LineElement,
   Tooltip,
   Legend,
-} from \"chart.js\";
-import { Pie, Bar, Line } from \"react-chartjs-2\";
+} from "chart.js";
+import { Pie, Bar, Line } from "react-chartjs-2";
 
-import type { Un2720ApiPayload } from \"@/lib/un2720\";
+import type { Un2720ApiPayload } from "@/lib/un2720";
 
 ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -48,16 +48,16 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
           {
             data: apiBody.categoryPieData,
             backgroundColor: [
-              \"#0077b6\",
-              \"#00b4d8\",
-              \"#48cae4\",
-              \"#0096c7\",
-              \"#ade8f4\",
-              \"#03045e\",
-              \"#caf0f8\",
-              \"#1d4ed8\",
-              \"#0ea5e9\",
-              \"#14b8a6\",
+              "#0077b6",
+              "#00b4d8",
+              "#48cae4",
+              "#0096c7",
+              "#ade8f4",
+              "#03045e",
+              "#caf0f8",
+              "#1d4ed8",
+              "#0ea5e9",
+              "#14b8a6",
             ],
             borderWidth: 1,
           },
@@ -68,7 +68,7 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: \"left\" as const,
+            position: "left" as const,
             labels: { boxWidth: 18, font: { size: 10 } },
           },
         },
@@ -83,60 +83,60 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
         labels: apiBody.barLabels,
         datasets: [
           {
-            type: \"line\" as const,
-            label: \"Pallets\",
+            type: "line" as const,
+            label: "Pallets",
             data: apiBody.barPallets ?? [],
-            borderColor: \"#f59e0b\",
-            backgroundColor: \"#f59e0b\",
+            borderColor: "#f59e0b",
+            backgroundColor: "#f59e0b",
             borderWidth: 2,
             tension: 0.1,
-            yAxisID: \"y1\",
+            yAxisID: "y1",
             pointRadius: 0,
           },
           {
-            type: \"line\" as const,
-            label: \"Trucks\",
+            type: "line" as const,
+            label: "Trucks",
             data: apiBody.barTrucks ?? [],
-            borderColor: \"#ef4444\",
-            backgroundColor: \"#ef4444\",
+            borderColor: "#ef4444",
+            backgroundColor: "#ef4444",
             borderWidth: 2,
             tension: 0.1,
-            yAxisID: \"y1\",
+            yAxisID: "y1",
             pointRadius: 0,
           },
           {
-            type: \"bar\" as const,
-            label: \"Weight (t)\",
+            type: "bar" as const,
+            label: "Weight (t)",
             data: apiBody.barWeights ?? [],
-            backgroundColor: \"#0077b6\",
-            yAxisID: \"y\",
+            backgroundColor: "#0077b6",
+            yAxisID: "y",
           },
         ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        interaction: { mode: \"index\" as const, intersect: false },
+        interaction: { mode: "index" as const, intersect: false },
         scales: {
           x: {
             ticks: { font: { size: 8 }, maxRotation: 45, minRotation: 45 },
           },
           y: {
-            type: \"linear\" as const,
+            type: "linear" as const,
             display: true,
-            position: \"left\" as const,
-            title: { display: true, text: \"Weight (t)\", font: { size: 10 } },
+            position: "left" as const,
+            title: { display: true, text: "Weight (t)", font: { size: 10 } },
           },
           y1: {
-            type: \"linear\" as const,
+            type: "linear" as const,
             display: true,
-            position: \"right\" as const,
+            position: "right" as const,
             grid: { drawOnChartArea: false },
-            title: { display: true, text: \"Pallets / Trucks\", font: { size: 10 } },
+            title: { display: true, text: "Pallets / Trucks", font: { size: 10 } },
           },
         },
         plugins: {
-          legend: { position: \"top\" as const, labels: { boxWidth: 14, font: { size: 10 } } },
+          legend: { position: "top" as const, labels: { boxWidth: 14, font: { size: 10 } } },
         },
       },
     };
@@ -150,8 +150,8 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
         datasets: apiBody.stackedDatasets.map((ds) => ({
           label: ds.label,
           data: ds.data,
-          backgroundColor: ds.backgroundColor || \"#0077b6\",
-          stack: \"weight\",
+          backgroundColor: ds.backgroundColor || "#0077b6",
+          stack: "weight",
         })),
       },
       options: {
@@ -161,11 +161,11 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
           x: { stacked: true, grid: { display: false } },
           y: {
             stacked: true,
-            title: { display: true, text: \"Weight (t)\", font: { size: 10 } },
+            title: { display: true, text: "Weight (t)", font: { size: 10 } },
           },
         },
         plugins: {
-          legend: { position: \"right\" as const, labels: { boxWidth: 14, font: { size: 10 } } },
+          legend: { position: "right" as const, labels: { boxWidth: 14, font: { size: 10 } } },
         },
       },
     };
@@ -178,20 +178,20 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
         labels: apiBody.orgLabels,
         datasets: [
           {
-            label: \"Trucks\",
+            label: "Trucks",
             data: apiBody.orgTruckCounts,
-            borderColor: \"#00b4d8\",
-            backgroundColor: \"#00b4d8\",
-            yAxisID: \"y\",
+            borderColor: "#00b4d8",
+            backgroundColor: "#00b4d8",
+            yAxisID: "y",
             tension: 0.3,
             fill: false,
           },
           {
-            label: \"Pallets\",
+            label: "Pallets",
             data: apiBody.orgPalletCounts,
-            borderColor: \"#f59e0b\",
-            backgroundColor: \"#f59e0b\",
-            yAxisID: \"y1\",
+            borderColor: "#f59e0b",
+            backgroundColor: "#f59e0b",
+            yAxisID: "y1",
             tension: 0.3,
             fill: false,
           },
@@ -205,19 +205,19 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
             ticks: { font: { size: 9 }, maxRotation: 25, minRotation: 25 },
           },
           y: {
-            type: \"linear\" as const,
-            position: \"left\" as const,
-            title: { display: true, text: \"Trucks\", font: { size: 10 } },
+            type: "linear" as const,
+            position: "left" as const,
+            title: { display: true, text: "Trucks", font: { size: 10 } },
           },
           y1: {
-            type: \"linear\" as const,
-            position: \"right\" as const,
+            type: "linear" as const,
+            position: "right" as const,
             grid: { drawOnChartArea: false },
-            title: { display: true, text: \"Pallets\", font: { size: 10 } },
+            title: { display: true, text: "Pallets", font: { size: 10 } },
           },
         },
         plugins: {
-          legend: { position: \"top\" as const, labels: { boxWidth: 14, font: { size: 10 } } },
+          legend: { position: "top" as const, labels: { boxWidth: 14, font: { size: 10 } } },
         },
       },
     };

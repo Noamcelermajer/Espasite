@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { UN2720_COLLECTED_URL, UN2720_INFO_URL, fetchUn2720CollectedData } from "@/lib/un2720";
 import type { Dictionary } from "@/lib/dictionaries";
+import { Un2720ChartsClient } from "./Un2720ChartsClient";
 
 interface Un2720SectionProps {
   dict: Dictionary;
@@ -12,6 +13,7 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
 
   const summary = data?.summary ?? null;
   const organizations = data?.organizations ?? [];
+  const apiPayloads = data?.apiPayloads;
 
   const topOrganizations = organizations.slice(0, 8);
   const maxTrucks = topOrganizations.reduce((max, row) => (row.trucks > max ? row.trucks : max), 0);
@@ -166,6 +168,9 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
             </div>
           </div>
         )}
+
+        {/* Additional UN-style charts driven by raw API payloads */}
+        <Un2720ChartsClient apiPayloads={apiPayloads} />
 
         <div className="mt-6 text-xs text-slate-muted max-w-3xl space-y-2">
           <p className="font-semibold uppercase tracking-wider">Disclaimers</p>

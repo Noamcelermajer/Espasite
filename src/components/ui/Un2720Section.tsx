@@ -2,6 +2,7 @@ import Link from "next/link";
 import { UN2720_COLLECTED_URL, UN2720_INFO_URL, fetchUn2720CollectedData } from "@/lib/un2720";
 import type { Dictionary } from "@/lib/dictionaries";
 import { Un2720ChartsClient } from "./Un2720ChartsClient";
+import { FaBoxes, FaTruck, FaWeightHanging, FaFileAlt } from "react-icons/fa";
 
 interface Un2720SectionProps {
   dict: Dictionary;
@@ -42,50 +43,38 @@ export default async function Un2720Section({ dict }: Un2720SectionProps) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="bg-institutional-white border border-institutional-border rounded-sm px-5 py-4 shadow-sm">
-              <div className="flex items-center justify-center gap-2 mb-2 text-navy">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-navy text-[10px] font-semibold">
-                  P
-                </span>
+              <div className="flex items-center justify-center gap-2 mb-3 text-navy">
+                <FaBoxes className="h-4 w-4" aria-hidden="true" />
                 <span className="text-[11px] font-semibold uppercase tracking-wide">{t.statPallets}</span>
               </div>
-              <p className="text-[11px] text-navy text-center mb-1">Pallets</p>
-              <p className="text-2xl font-bold text-navy text-center">
+              <p className="text-3xl font-bold text-navy text-center">
                 {summary ? summary.pallets.toLocaleString() : "—"}
               </p>
             </div>
             <div className="bg-institutional-white border border-institutional-border rounded-sm px-5 py-4 shadow-sm">
-              <div className="flex items-center justify-center gap-2 mb-2 text-navy">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-navy text-[10px] font-semibold">
-                  T
-                </span>
+              <div className="flex items-center justify-center gap-2 mb-3 text-navy">
+                <FaTruck className="h-4 w-4" aria-hidden="true" />
                 <span className="text-[11px] font-semibold uppercase tracking-wide">{t.statTrucks}</span>
               </div>
-              <p className="text-[11px] text-navy text-center mb-1">Trucks</p>
-              <p className="text-2xl font-bold text-navy text-center">
+              <p className="text-3xl font-bold text-navy text-center">
                 {summary ? summary.trucks.toLocaleString() : "—"}
               </p>
             </div>
             <div className="bg-institutional-white border border-institutional-border rounded-sm px-5 py-4 shadow-sm">
-              <div className="flex items-center justify-center gap-2 mb-2 text-navy">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-navy text-[10px] font-semibold">
-                  W
-                </span>
+              <div className="flex items-center justify-center gap-2 mb-3 text-navy">
+                <FaWeightHanging className="h-4 w-4" aria-hidden="true" />
                 <span className="text-[11px] font-semibold uppercase tracking-wide">{t.statWeight}</span>
               </div>
-              <p className="text-[11px] text-navy text-center mb-1">Weight (t)</p>
-              <p className="text-2xl font-bold text-navy text-center">
+              <p className="text-3xl font-bold text-navy text-center">
                 {summary ? summary.weightTonnes.toLocaleString() : "—"}
               </p>
             </div>
             <div className="bg-institutional-white border border-institutional-border rounded-sm px-5 py-4 shadow-sm">
-              <div className="flex items-center justify-center gap-2 mb-2 text-navy">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-navy text-[10px] font-semibold">
-                  R
-                </span>
+              <div className="flex items-center justify-center gap-2 mb-3 text-navy">
+                <FaFileAlt className="h-4 w-4" aria-hidden="true" />
                 <span className="text-[11px] font-semibold uppercase tracking-wide">{t.statRequests}</span>
               </div>
-              <p className="text-[11px] text-navy text-center mb-1">Number of Requests</p>
-              <p className="text-2xl font-bold text-navy text-center">
+              <p className="text-3xl font-bold text-navy text-center">
                 {summary ? summary.numberOfRequests.toLocaleString() : "—"}
               </p>
             </div>

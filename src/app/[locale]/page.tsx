@@ -28,7 +28,10 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Quick nav grid */}
+      {/* UN2720 monitoring: live dashboard embed + link */}
+      <Un2720Section dict={dict} />
+
+      {/* Quick nav grid (Institutional Overview) */}
       <section className="mx-auto max-w-6xl px-6 py-20">
         <h2 className="text-2xl font-bold text-navy mb-2">{dict.home.overviewTitle}</h2>
         <p className="text-slate mb-10 max-w-xl">{dict.home.overviewSubtitle}</p>
@@ -55,9 +58,6 @@ export default async function HomePage({ params }: PageProps) {
           ))}
         </div>
       </section>
-
-      {/* UN2720 monitoring: live dashboard embed + link */}
-      <Un2720Section dict={dict} />
 
       {/* Trust strip */}
       <section className="border-t border-institutional-border bg-institutional-off-white">

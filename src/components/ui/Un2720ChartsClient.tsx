@@ -233,7 +233,9 @@ export function Un2720ChartsClient({ apiPayloads }: Un2720ChartsClientProps) {
         </div>
         <div className="bg-institutional-white border border-institutional-border rounded-sm px-6 py-5 shadow-sm">
           <h3 className="text-xs font-bold text-slate-muted text-center mb-4">Collected Daily Trends</h3>
-          <div className="h-[260px] lg:h-[320px]">{dailyTrends && <Bar data={dailyTrends.data} options={dailyTrends.options} />}</div>
+          <div className="h-[260px] lg:h-[320px]">
+            {dailyTrends && <Bar data={dailyTrends.data as any} options={dailyTrends.options} />}
+          </div>
         </div>
       </div>
 

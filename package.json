@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "scrape:un2720": "node scripts/scrape-un2720.mjs"
+    "lint": "next lint"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.19.0",
@@ -25,7 +24,6 @@
     "@types/react-dom": "^19.1.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.3.0",
-    "puppeteer": "^23.0.0",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.8.0"
   }
